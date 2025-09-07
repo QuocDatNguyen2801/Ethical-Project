@@ -4,6 +4,7 @@ import { ScoreManager, HighScore } from './database';
 
 export class UIManager {
   private currentScreen: GameScreen = 'main-menu';
+  private lastOrderId: string | null = null;
 
   constructor() {
     this.initializeEventListeners();
@@ -57,6 +58,20 @@ export class UIManager {
     this.initializeDragAndDrop();
 
     // Avatar selection (save to localStorage and update header)
+    const avatarModal = document.getElementById('avatar-modal');
+    const openModalBtn = document.getElementById('open-avatar-modal');
+    const closeModalBtn = document.getElementById('close-avatar-modal');
+
+    openModalBtn?.addEventListener('click', () => {
+      avatarModal?.classList.remove('hidden');
+    });
+    closeModalBtn?.addEventListener('click', () => {
+      avatarModal?.classList.add('hidden');
+    });
+    avatarModal?.querySelector('.modal-backdrop')?.addEventListener('click', () => {
+      avatarModal?.classList.add('hidden');
+    });
+
     document.querySelectorAll('.avatar-option').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const target = e.currentTarget as HTMLElement;
@@ -64,6 +79,7 @@ export class UIManager {
         localStorage.setItem('playerAvatar', avatar);
         const headerAvatar = document.querySelector('.player-avatar');
         if (headerAvatar) headerAvatar.textContent = avatar;
+        avatarModal?.classList.add('hidden');
       });
     });
     const savedAvatar = localStorage.getItem('playerAvatar');
@@ -205,7 +221,6 @@ export class UIManager {
     const avatarEl = document.querySelector('.customer-avatar') as HTMLElement | null;
     if (!orderElement || !state.currentOrder) {
       if (orderElement) orderElement.innerHTML = '<p>🔄 Đang tạo đơn hàng mới...</p>';
-      if (avatarEl) avatarEl.textContent = this.getRandomCustomerEmoji();
       return;
     }
 
@@ -231,7 +246,12 @@ export class UIManager {
         </div>
       </div>
     `;
-    if (avatarEl) avatarEl.textContent = this.getRandomCustomerEmoji();
+
+    // Update customer avatar only when a NEW order arrives
+    if (avatarEl && order.id !== this.lastOrderId) {
+      avatarEl.textContent = this.getRandomCustomerEmoji();
+      this.lastOrderId = order.id;
+    }
   }
 
   private getRandomCustomerEmoji(): string {

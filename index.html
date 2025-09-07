@@ -16,14 +16,7 @@
                 <button id="start-game-btn" class="btn primary">Bắt Đầu Chơi</button>
                 <button id="high-scores-btn" class="btn secondary">Điểm Cao</button>
                 <button id="instructions-btn" class="btn secondary">Hướng Dẫn</button>
-                <div class="avatar-select">
-                    <p>Chọn avatar đầu bếp:</p>
-                    <div class="avatar-options">
-                        <button class="avatar-option" data-avatar="👩‍🍳">👩‍🍳</button>
-                        <button class="avatar-option" data-avatar="👨‍🍳">👨‍🍳</button>
-                        <button class="avatar-option" data-avatar="🧑‍🍳">🧑‍🍳</button>
-                    </div>
-                </div>
+                <button id="open-avatar-modal" class="btn secondary">Chọn Avatar</button>
             </div>
         </div>
 
@@ -112,6 +105,24 @@
                     <button id="play-again-btn" class="btn primary">Chơi Lại</button>
                     <button id="back-to-menu-from-game-over" class="btn secondary">Quay lại Menu</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Avatar Modal -->
+    <div id="avatar-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h3>Chọn avatar đầu bếp</h3>
+            <div class="avatar-options">
+                <button class="avatar-option" data-avatar="👩‍🍳">👩‍🍳</button>
+                <button class="avatar-option" data-avatar="👨‍🍳">👨‍🍳</button>
+                <button class="avatar-option" data-avatar="🧑‍🍳">🧑‍🍳</button>
+                <button class="avatar-option" data-avatar="🧕">🧕</button>
+                <button class="avatar-option" data-avatar="🧔">🧔</button>
+            </div>
+            <div class="modal-actions">
+                <button id="close-avatar-modal" class="btn secondary">Đóng</button>
             </div>
         </div>
     </div>

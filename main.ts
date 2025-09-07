@@ -32,10 +32,10 @@ class CookingMamaGame {
     this.uiManager.onServeDish = () => {
       const success = this.gameEngine.serveDish();
       if (success) {
-        this.playSound('success');
-        this.showSuccessMessage();
+        this.playSound('serve-success');
+        this.showSuccessMessage('Món đã được phục vụ!');
       } else {
-        this.playSound('error');
+        this.playSound('serve-fail');
         this.showErrorMessage('Thiếu nguyên liệu hoặc nguyên liệu không đúng!');
       }
     };
@@ -198,7 +198,7 @@ class CookingMamaGame {
     }, 3000);
   }
 
-  private playSound(type: 'success' | 'error' | 'high-score' | 'game-over'): void {
+  private playSound(type: 'success' | 'error' | 'high-score' | 'game-over' | 'serve-success' | 'serve-fail'): void {
     // Create audio context for sound effects
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     
@@ -241,6 +241,15 @@ class CookingMamaGame {
         createTone(392, 0.5); // G4
         setTimeout(() => createTone(349, 0.5), 200); // F4
         setTimeout(() => createTone(294, 0.8), 400); // D4
+        break;
+      case 'serve-success':
+        createTone(659, 0.15); // E5
+        setTimeout(() => createTone(784, 0.15), 120); // G5
+        setTimeout(() => createTone(987, 0.25), 240); // B5
+        break;
+      case 'serve-fail':
+        createTone(233, 0.25, 'triangle'); // Bb3
+        setTimeout(() => createTone(196, 0.4, 'triangle'), 180); // G3
         break;
     }
   }
