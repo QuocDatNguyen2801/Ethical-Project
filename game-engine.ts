@@ -192,6 +192,7 @@ export class GameEngine {
   private handleOrderTimeout(): void {
     // Penalty for timeout
     this.state.score = Math.max(0, this.state.score - 50);
+    console.log('⏰ Hết thời gian! Trừ 50 điểm');
     this.generateNewOrder();
   }
 

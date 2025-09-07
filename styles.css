@@ -480,11 +480,17 @@ body {
 .ingredient-emoji {
     font-size: 2rem;
     margin-bottom: 5px;
+    display: block;
+    text-align: center;
+    min-height: 2rem;
+    line-height: 2rem;
 }
 
 .ingredient-name {
     font-size: 0.8rem;
     font-weight: bold;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 /* High Score Styling */

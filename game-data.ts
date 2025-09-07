@@ -20,9 +20,9 @@ export const INGREDIENTS: Ingredient[] = [
 
   // Spices
   { id: 'salt', name: 'Muối', emoji: '🧂', category: 'spice' },
-  { id: 'pepper', name: 'Tiêu', emoji: '🫚', category: 'spice' },
+  { id: 'pepper', name: 'Tiêu', emoji: '⚫', category: 'spice' },
   { id: 'garlic', name: 'Tỏi', emoji: '🧄', category: 'spice' },
-  { id: 'ginger', name: 'Gừng', emoji: '🫚', category: 'spice' },
+  { id: 'ginger', name: 'Gừng', emoji: '🟤', category: 'spice' },
   { id: 'chili', name: 'Ớt', emoji: '🌶️', category: 'spice' },
 
   // Dairy

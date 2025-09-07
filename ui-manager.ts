@@ -1,4 +1,4 @@
-import { GameState, GameScreen } from './game-types';
+import { GameState, GameScreen, Ingredient } from './game-types';
 import { getIngredientById } from './game-data';
 import { ScoreManager, HighScore } from './database';
 
@@ -213,7 +213,7 @@ export class UIManager {
     `;
   }
 
-  private updateAvailableIngredients(ingredients: any[]): void {
+  private updateAvailableIngredients(ingredients: Ingredient[]): void {
     const container = document.getElementById('available-ingredients');
     if (!container) return;
 
