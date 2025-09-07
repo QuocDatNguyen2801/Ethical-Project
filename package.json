@@ -1,8 +1,8 @@
 {
   "name": "cooking-mama-game",
   "version": "1.0.0",
+  "private": true,
   "description": "A simple cooking game inspired by Cooking Mama",
-  "main": "index.html",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

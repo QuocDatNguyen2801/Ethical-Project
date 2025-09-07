@@ -224,15 +224,43 @@ export class UIManager {
       return;
     }
 
-    container.innerHTML = ingredients.map(ingredient => `
-      <div class="ingredient-item" 
-           data-ingredient-id="${ingredient.id}" 
-           draggable="true"
-           title="${ingredient.name}">
-        <div class="ingredient-emoji">${ingredient.emoji}</div>
-        <div class="ingredient-name">${ingredient.name}</div>
-      </div>
-    `).join('');
+    // Group ingredients by category
+    const categories = {
+      'vegetable': ingredients.filter(i => i.category === 'vegetable'),
+      'meat': ingredients.filter(i => i.category === 'meat'),
+      'spice': ingredients.filter(i => i.category === 'spice'),
+      'dairy': ingredients.filter(i => i.category === 'dairy'),
+      'grain': ingredients.filter(i => i.category === 'grain')
+    };
+
+    const categoryNames = {
+      'vegetable': '🥬 Rau củ',
+      'meat': '🥩 Thịt cá',
+      'spice': '🧂 Gia vị',
+      'dairy': '🥛 Sữa & Trứng',
+      'grain': '🍚 Ngũ cốc'
+    };
+
+    container.innerHTML = Object.entries(categories).map(([category, items]) => {
+      if (items.length === 0) return '';
+      
+      const itemsHTML = items.map(ingredient => `
+        <div class="ingredient-item" 
+             data-ingredient-id="${ingredient.id}" 
+             draggable="true"
+             title="${ingredient.name}">
+          <div class="ingredient-emoji">${ingredient.emoji}</div>
+          <div class="ingredient-name">${ingredient.name}</div>
+        </div>
+      `).join('');
+
+      return `
+        <div class="ingredient-category">
+          <h4 class="category-title">${categoryNames[category as keyof typeof categoryNames]}</h4>
+          <div class="category-items">${itemsHTML}</div>
+        </div>
+      `;
+    }).join('');
   }
 
   private updateCookingIngredients(ingredientIds: string[]): void {
