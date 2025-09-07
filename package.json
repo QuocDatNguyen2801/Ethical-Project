@@ -1,0 +1,19 @@
+{
+  "name": "cooking-mama-game",
+  "version": "1.0.0",
+  "description": "A simple cooking game inspired by Cooking Mama",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "dexie": "^3.2.4"
+  }
+}

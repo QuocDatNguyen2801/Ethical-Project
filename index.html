@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Mama - Game Nấu Ăn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <div class="menu-content">
+                <h1>🍳 Cooking Mama</h1>
+                <p>Game Nấu Ăn Thú Vị</p>
+                <button id="start-game-btn" class="btn primary">Bắt Đầu Chơi</button>
+                <button id="high-scores-btn" class="btn secondary">Điểm Cao</button>
+                <button id="instructions-btn" class="btn secondary">Hướng Dẫn</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="score-display">
+                    <span>Điểm: <span id="current-score">0</span></span>
+                </div>
+                <div class="time-display">
+                    <span>Thời gian: <span id="time-left">60</span>s</span>
+                </div>
+                <div class="level-display">
+                    <span>Cấp độ: <span id="current-level">1</span></span>
+                </div>
+            </div>
+
+            <div class="game-content">
+                <!-- Customer Order -->
+                <div class="customer-section">
+                    <div class="customer">
+                        <div class="customer-avatar">👨‍🍳</div>
+                        <div class="order-display">
+                            <h3>Đơn hàng:</h3>
+                            <div id="current-order" class="order-ingredients"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kitchen Area -->
+                <div class="kitchen-section">
+                    <div class="ingredients-panel">
+                        <h3>Nguyên liệu có sẵn:</h3>
+                        <div id="available-ingredients" class="ingredients-grid"></div>
+                    </div>
+                    
+                    <div class="cooking-area">
+                        <h3>Khu vực nấu ăn:</h3>
+                        <div id="cooking-pan" class="cooking-pan">
+                            <div id="cooking-ingredients" class="cooking-ingredients"></div>
+                        </div>
+                        <button id="serve-dish-btn" class="btn primary" disabled>Phục vụ món ăn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- High Scores Screen -->
+        <div id="high-scores-screen" class="screen">
+            <div class="scores-content">
+                <h2>🏆 Điểm Cao Nhất</h2>
+                <div id="high-scores-list" class="scores-list"></div>
+                <button id="back-to-menu-btn" class="btn secondary">Quay lại Menu</button>
+            </div>
+        </div>
+
+        <!-- Instructions Screen -->
+        <div id="instructions-screen" class="screen">
+            <div class="instructions-content">
+                <h2>📖 Hướng Dẫn Chơi</h2>
+                <div class="instructions-text">
+                    <p>🎯 <strong>Mục tiêu:</strong> Nấu các món ăn theo đơn hàng của khách hàng</p>
+                    <p>🍽️ <strong>Cách chơi:</strong></p>
+                    <ul>
+                        <li>Khách hàng sẽ đặt đơn hàng với các nguyên liệu cần thiết</li>
+                        <li>Kéo thả các nguyên liệu vào chảo nấu ăn</li>
+                        <li>Phục vụ món ăn khi đã có đủ nguyên liệu</li>
+                        <li>Làm càng nhanh càng được nhiều điểm</li>
+                    </ul>
+                    <p>⭐ <strong>Điểm số:</strong> Dựa trên tốc độ và độ chính xác</p>
+                </div>
+                <button id="back-to-menu-from-instructions" class="btn secondary">Quay lại Menu</button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="screen">
+            <div class="game-over-content">
+                <h2>🎮 Game Over</h2>
+                <div class="final-score">
+                    <p>Điểm cuối cùng: <span id="final-score">0</span></p>
+                    <p>Cấp độ đạt được: <span id="final-level">1</span></p>
+                </div>
+                <div class="game-over-actions">
+                    <button id="play-again-btn" class="btn primary">Chơi Lại</button>
+                    <button id="back-to-menu-from-game-over" class="btn secondary">Quay lại Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.ts"></script>
+</body>
+</html>
