@@ -34,37 +34,47 @@
                 </div>
             </div>
 
-            <div class="game-content">
-                <!-- Customer Order -->
-                <div class="customer-section">
-                    <div class="customer">
-                        <div class="customer-avatar">👨‍🍳</div>
-                        <div class="order-display">
-                            <h3>Đơn hàng:</h3>
-                            <div id="current-order" class="order-ingredients"></div>
+            <div class="game-content new-layout">
+                <!-- Left: Order + Cooking Area -->
+                <div class="left-panel">
+                    <div class="customer-section">
+                        <div class="customer">
+                            <div class="customer-avatar">👨‍🍳</div>
+                            <div class="order-display">
+                                <h3>Đơn hàng:</h3>
+                                <div id="current-order" class="order-ingredients"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Kitchen Area -->
-                <div class="kitchen-section">
-                    <div class="player-avatar-container">
-                        <div class="player-avatar" title="Bạn">👩‍🍳</div>
-                    </div>
-                    <div class="ingredients-panel">
-                        <h3>Nguyên liệu có sẵn:</h3>
-                        <div id="available-ingredients" class="ingredients-grid"></div>
-                    </div>
-                    
                     <div class="cooking-area">
                         <h3>Khu vực nấu ăn:</h3>
                         <div id="cooking-pan" class="cooking-pan">
                             <div id="cooking-ingredients" class="cooking-ingredients"></div>
                         </div>
                         <button id="serve-dish-btn" class="btn primary" disabled>Phục vụ món ăn</button>
+                        <div class="player-avatar-container">
+                            <div class="player-avatar" title="Bạn">👩‍🍳</div>
+                        </div>
                     </div>
                 </div>
+                <!-- Right: Ingredients -->
+                <div class="ingredients-panel wide">
+                    <h3>Nguyên liệu có sẵn:</h3>
+                    <div id="available-ingredients" class="ingredients-grid"></div>
+                </div>
             </div>
+    <!-- High Score Name Modal -->
+    <div id="highscore-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h3>Lưu điểm cao</h3>
+            <p>Chúc mừng! Bạn đã đạt điểm cao mới.<br>Nhập tên của bạn để lưu lại:</p>
+            <input id="player-name-input" type="text" maxlength="20" placeholder="Tên của bạn" style="width: 100%; padding: 10px; margin: 10px 0; font-size: 1.1rem; border-radius: 8px; border: 1px solid #ccc;">
+            <div class="modal-actions">
+                <button id="save-highscore-btn" class="btn primary">Lưu</button>
+            </div>
+        </div>
+    </div>
         </div>
 
         <!-- High Scores Screen -->

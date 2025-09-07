@@ -169,13 +169,70 @@ body {
     border: 4px solid white;
 }
 
-.game-content {
+.game-content.new-layout {
     display: flex;
-    gap: 20px;
+    flex-direction: row;
+    gap: 32px;
     flex: 1;
-    max-width: 1200px;
+    max-width: 1400px;
     width: 100%;
     position: relative;
+    align-items: flex-start;
+}
+
+.left-panel {
+    flex: 1 1 350px;
+    min-width: 340px;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.ingredients-panel.wide {
+    flex: 2 1 700px;
+    max-width: 900px;
+    min-width: 400px;
+    background: rgba(255,255,255,0.97);
+    border-radius: 20px;
+    padding: 32px 24px;
+    box-shadow: 0 4px 24px rgba(78,205,196,0.08);
+}
+
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+@media (max-width: 1100px) {
+    .game-content.new-layout {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .ingredients-panel.wide {
+        min-width: unset;
+        max-width: unset;
+    }
+    .left-panel {
+        max-width: unset;
+    }
+}
+
+/* Modal nhập tên điểm cao */
+#highscore-modal .modal-content {
+    max-width: 350px;
+    text-align: center;
+}
+#highscore-modal input[type="text"] {
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 /* Customer Section */

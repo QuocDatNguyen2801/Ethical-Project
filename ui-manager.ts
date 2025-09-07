@@ -448,8 +448,36 @@ export class UIManager {
 
   public showPlayerNameDialog(): Promise<string> {
     return new Promise((resolve) => {
-      const playerName = prompt('Nhập tên của bạn để lưu điểm cao:') || 'Người chơi';
-      resolve(playerName);
+      const modal = document.getElementById('highscore-modal');
+      const input = document.getElementById('player-name-input') as HTMLInputElement;
+      const saveBtn = document.getElementById('save-highscore-btn');
+      if (!modal || !input || !saveBtn) {
+        // fallback
+        const playerName = prompt('Nhập tên của bạn để lưu điểm cao:') || 'Người chơi';
+        resolve(playerName);
+        return;
+      }
+      input.value = '';
+      modal.classList.remove('hidden');
+      input.focus();
+      const closeModal = () => {
+        modal.classList.add('hidden');
+        saveBtn.removeEventListener('click', onSave);
+        input.removeEventListener('keydown', onKeyDown);
+      };
+      const onSave = () => {
+        let name = input.value.trim();
+        if (!name) name = 'Người chơi';
+        closeModal();
+        resolve(name);
+      };
+      const onKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Enter') {
+          onSave();
+        }
+      };
+      saveBtn.addEventListener('click', onSave);
+      input.addEventListener('keydown', onKeyDown);
     });
   }
 
