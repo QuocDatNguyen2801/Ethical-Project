@@ -89,6 +89,15 @@ export class GameEngine {
         this.state.currentOrder.timeLeft--;
         
         if (this.state.currentOrder.timeLeft <= 0) {
+          // If order time runs out and the dish is not complete -> game over
+          const required = this.state.currentOrder.recipe.ingredients;
+          const complete = required.every(r => this.state.cookingIngredients.includes(r));
+          if (!complete) {
+            console.log('💀 Game Over - Hết thời gian đơn hàng và chưa hoàn thành món!');
+            this.endGame();
+            return;
+          }
+          // If somehow complete exactly at timeout, accept and continue with penalty or without
           this.handleOrderTimeout();
         }
       }

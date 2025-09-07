@@ -8,7 +8,7 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'potato', name: 'Khoai tây', emoji: '🥔', category: 'vegetable' },
   { id: 'lettuce', name: 'Rau xà lách', emoji: '🥬', category: 'vegetable' },
   { id: 'cucumber', name: 'Dưa chuột', emoji: '🥒', category: 'vegetable' },
-  { id: 'bell-pepper', name: 'Ớt chuông', emoji: '🫒', category: 'vegetable' },
+  { id: 'bell-pepper', name: 'Ớt chuông', emoji: '🟢', category: 'vegetable' },
   { id: 'mushroom', name: 'Nấm', emoji: '🍄', category: 'vegetable' },
 
   // Meat
