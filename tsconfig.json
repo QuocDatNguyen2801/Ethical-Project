@@ -15,7 +15,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "*.ts"],
+  "include": ["main.ts", "game-engine.ts", "ui-manager.ts", "game-types.ts", "game-data.ts", "database.ts"],
   "exclude": ["vite.config.ts", "dist", "node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
