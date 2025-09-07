@@ -13,6 +13,10 @@ export class UIManager {
     // Main menu buttons
     document.getElementById('start-game-btn')?.addEventListener('click', () => {
       this.showScreen('game');
+      // Initialize game when entering game screen
+      setTimeout(() => {
+        this.onInitializeGame?.();
+      }, 100);
     });
 
     document.getElementById('high-scores-btn')?.addEventListener('click', () => {
@@ -27,6 +31,10 @@ export class UIManager {
     // Game over buttons
     document.getElementById('play-again-btn')?.addEventListener('click', () => {
       this.showScreen('game');
+      // Initialize game when playing again
+      setTimeout(() => {
+        this.onInitializeGame?.();
+      }, 100);
     });
 
     document.getElementById('back-to-menu-btn')?.addEventListener('click', () => {
@@ -177,7 +185,7 @@ export class UIManager {
   private updateCurrentOrder(state: GameState): void {
     const orderElement = document.getElementById('current-order');
     if (!orderElement || !state.currentOrder) {
-      if (orderElement) orderElement.innerHTML = '<p>Chờ đơn hàng mới...</p>';
+      if (orderElement) orderElement.innerHTML = '<p>🔄 Đang tạo đơn hàng mới...</p>';
       return;
     }
 
@@ -187,13 +195,19 @@ export class UIManager {
       return ingredient ? `${ingredient.emoji} ${ingredient.name}` : id;
     }).join(', ');
 
+    // Determine progress bar color based on time remaining
+    const timePercentage = (order.timeLeft / order.maxTime) * 100;
+    let progressClass = '';
+    if (timePercentage < 30) progressClass = 'danger';
+    else if (timePercentage < 60) progressClass = 'warning';
+
     orderElement.innerHTML = `
       <div class="order-recipe">
-        <h4>${order.recipe.name}</h4>
-        <p><strong>Nguyên liệu cần:</strong> ${ingredients}</p>
-        <p><strong>Thời gian còn lại:</strong> ${order.timeLeft}s</p>
+        <h4>🍽️ ${order.recipe.name}</h4>
+        <p><strong>📋 Nguyên liệu cần:</strong> ${ingredients}</p>
+        <p><strong>⏰ Thời gian còn lại:</strong> ${order.timeLeft}s</p>
         <div class="progress-bar">
-          <div class="progress-fill" style="width: ${(order.timeLeft / order.maxTime) * 100}%"></div>
+          <div class="progress-fill ${progressClass}" style="width: ${timePercentage}%"></div>
         </div>
       </div>
     `;
@@ -202,6 +216,11 @@ export class UIManager {
   private updateAvailableIngredients(ingredients: any[]): void {
     const container = document.getElementById('available-ingredients');
     if (!container) return;
+
+    if (ingredients.length === 0) {
+      container.innerHTML = '<p class="empty-message">🔄 Đang tải nguyên liệu...</p>';
+      return;
+    }
 
     container.innerHTML = ingredients.map(ingredient => `
       <div class="ingredient-item" 
@@ -298,4 +317,5 @@ export class UIManager {
   public onAddIngredient?: (ingredientId: string) => void;
   public onRemoveIngredient?: (ingredientId: string) => void;
   public onServeDish?: () => void;
+  public onInitializeGame?: () => void;
 }

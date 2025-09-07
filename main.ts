@@ -38,6 +38,10 @@ class CookingMamaGame {
       }
     };
 
+    this.uiManager.onInitializeGame = () => {
+      this.gameEngine.initializeGame();
+    };
+
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {

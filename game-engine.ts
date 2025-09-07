@@ -48,6 +48,18 @@ export class GameEngine {
     this.onScreenChange('game');
   }
 
+  public initializeGame(): void {
+    // Initialize game state when entering game screen
+    if (!this.state.isGameActive) {
+      this.state = this.createInitialState();
+      this.state.isGameActive = true;
+      this.state.gameStartTime = Date.now();
+      this.generateNewOrder();
+      this.startGameLoop();
+      this.onStateChange(this.state);
+    }
+  }
+
   public pauseGame(): void {
     this.state.isGameActive = false;
     this.stopGameLoop();
@@ -110,6 +122,11 @@ export class GameEngine {
 
     this.state.cookingIngredients = [];
     this.onStateChange(this.state);
+    
+    // Log for debugging
+    console.log(`🍳 Khách hàng mới: ${recipe.name}`);
+    console.log(`📋 Nguyên liệu cần: ${recipe.ingredients.join(', ')}`);
+    console.log(`⏰ Thời gian: ${recipe.timeLimit}s`);
   }
 
   private getDifficultyForLevel(level: number): 'easy' | 'medium' | 'hard' {
