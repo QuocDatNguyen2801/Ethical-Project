@@ -16,12 +16,21 @@
                 <button id="start-game-btn" class="btn primary">Bắt Đầu Chơi</button>
                 <button id="high-scores-btn" class="btn secondary">Điểm Cao</button>
                 <button id="instructions-btn" class="btn secondary">Hướng Dẫn</button>
+                <div class="avatar-select">
+                    <p>Chọn avatar đầu bếp:</p>
+                    <div class="avatar-options">
+                        <button class="avatar-option" data-avatar="👩‍🍳">👩‍🍳</button>
+                        <button class="avatar-option" data-avatar="👨‍🍳">👨‍🍳</button>
+                        <button class="avatar-option" data-avatar="🧑‍🍳">🧑‍🍳</button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Game Screen -->
         <div id="game-screen" class="screen">
             <div class="game-header">
+                <div class="player-avatar" title="Bạn">👩‍🍳</div>
                 <div class="score-display">
                     <span>Điểm: <span id="current-score">0</span></span>
                 </div>

@@ -21,10 +21,12 @@ class CookingMamaGame {
     // UI Manager event handlers
     this.uiManager.onAddIngredient = (ingredientId: string) => {
       this.gameEngine.addIngredientToCooking(ingredientId);
+      this.playSound('success');
     };
 
     this.uiManager.onRemoveIngredient = (ingredientId: string) => {
       this.gameEngine.removeIngredientFromCooking(ingredientId);
+      this.playSound('error');
     };
 
     this.uiManager.onServeDish = () => {
@@ -75,19 +77,22 @@ class CookingMamaGame {
     this.uiManager.updateGameOverScreen(state.score, state.level);
     
     // Check if this is a high score
-    const highScores = await import('./database').then(module => 
-      module.ScoreManager.getHighScores(1)
-    );
+    const highScores = await import('./database').then(module => module.ScoreManager.getHighScores(1));
     
     const isHighScore = highScores.length === 0 || state.score > highScores[0].score;
     
     if (isHighScore) {
       this.playSound('high-score');
+      // Force name input modal loop until non-empty
       setTimeout(async () => {
-        const playerName = await this.uiManager.showPlayerNameDialog();
+        let playerName = '';
+        while (!playerName || playerName.trim().length === 0) {
+          playerName = await this.uiManager.showPlayerNameDialog();
+          playerName = playerName.trim();
+        }
         await this.gameEngine.saveHighScore(playerName);
         this.showSuccessMessage('Chúc mừng! Bạn đã lập kỷ lục mới!');
-      }, 1000);
+      }, 400);
     } else {
       this.playSound('game-over');
       // Show different messages based on score

@@ -184,10 +184,11 @@ export class GameEngine {
       return false;
     }
 
-    // Calculate score based on time remaining and accuracy
+    // Calculate score based on time remaining, difficulty and level
     const timeBonus = Math.floor(order.timeLeft / order.maxTime * 100);
     const levelMultiplier = Math.pow(this.config.scoreMultiplier, this.state.level - 1);
-    const score = Math.floor((order.recipe.baseScore + timeBonus) * levelMultiplier);
+    const difficultyMultiplier = order.recipe.difficulty === 'easy' ? 1 : order.recipe.difficulty === 'medium' ? 1.2 : 1.5;
+    const score = Math.floor((order.recipe.baseScore * difficultyMultiplier + timeBonus) * levelMultiplier);
 
     this.state.score += score;
     this.state.level++;

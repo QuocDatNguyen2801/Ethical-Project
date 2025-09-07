@@ -49,6 +49,14 @@ export const RECIPES: Recipe[] = [
     timeLimit: 20
   },
   {
+    id: 'tomato-omelette',
+    name: 'Trứng ốp la cà chua',
+    ingredients: ['egg', 'tomato', 'salt'],
+    difficulty: 'easy',
+    baseScore: 120,
+    timeLimit: 22
+  },
+  {
     id: 'scrambled-eggs',
     name: 'Trứng Chiên',
     ingredients: ['egg', 'butter', 'salt'],
@@ -63,6 +71,14 @@ export const RECIPES: Recipe[] = [
     difficulty: 'easy',
     baseScore: 110,
     timeLimit: 22
+  },
+  {
+    id: 'butter-potato',
+    name: 'Khoai tây bơ',
+    ingredients: ['potato', 'butter', 'salt'],
+    difficulty: 'easy',
+    baseScore: 130,
+    timeLimit: 20
   },
 
   // Medium Recipes
@@ -90,6 +106,22 @@ export const RECIPES: Recipe[] = [
     baseScore: 220,
     timeLimit: 32
   },
+  {
+    id: 'fish-grill',
+    name: 'Cá nướng tiêu',
+    ingredients: ['fish', 'pepper', 'salt'],
+    difficulty: 'medium',
+    baseScore: 210,
+    timeLimit: 30
+  },
+  {
+    id: 'chicken-salad',
+    name: 'Salad gà',
+    ingredients: ['lettuce', 'chicken', 'cucumber', 'tomato', 'salt'],
+    difficulty: 'medium',
+    baseScore: 230,
+    timeLimit: 32
+  },
 
   // Hard Recipes
   {
@@ -115,6 +147,23 @@ export const RECIPES: Recipe[] = [
     difficulty: 'hard',
     baseScore: 400,
     timeLimit: 42
+  }
+  ,
+  {
+    id: 'beef-stir-ginger',
+    name: 'Bò xào gừng',
+    ingredients: ['beef', 'ginger', 'onion', 'garlic', 'salt'],
+    difficulty: 'hard',
+    baseScore: 360,
+    timeLimit: 38
+  },
+  {
+    id: 'shrimp-garlic-noodles',
+    name: 'Mì tôm xào tỏi',
+    ingredients: ['noodles', 'shrimp', 'garlic', 'onion', 'salt'],
+    difficulty: 'hard',
+    baseScore: 370,
+    timeLimit: 40
   }
 ];
 

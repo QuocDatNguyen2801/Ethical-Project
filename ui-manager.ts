@@ -55,6 +55,22 @@ export class UIManager {
     });
 
     this.initializeDragAndDrop();
+
+    // Avatar selection (save to localStorage and update header)
+    document.querySelectorAll('.avatar-option').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const avatar = target.getAttribute('data-avatar') || '👩‍🍳';
+        localStorage.setItem('playerAvatar', avatar);
+        const headerAvatar = document.querySelector('.player-avatar');
+        if (headerAvatar) headerAvatar.textContent = avatar;
+      });
+    });
+    const savedAvatar = localStorage.getItem('playerAvatar');
+    if (savedAvatar) {
+      const headerAvatar = document.querySelector('.player-avatar');
+      if (headerAvatar) headerAvatar.textContent = savedAvatar;
+    }
   }
 
   private initializeDragAndDrop(): void {
@@ -186,8 +202,10 @@ export class UIManager {
 
   private updateCurrentOrder(state: GameState): void {
     const orderElement = document.getElementById('current-order');
+    const avatarEl = document.querySelector('.customer-avatar') as HTMLElement | null;
     if (!orderElement || !state.currentOrder) {
       if (orderElement) orderElement.innerHTML = '<p>🔄 Đang tạo đơn hàng mới...</p>';
+      if (avatarEl) avatarEl.textContent = this.getRandomCustomerEmoji();
       return;
     }
 
@@ -213,6 +231,12 @@ export class UIManager {
         </div>
       </div>
     `;
+    if (avatarEl) avatarEl.textContent = this.getRandomCustomerEmoji();
+  }
+
+  private getRandomCustomerEmoji(): string {
+    const customers = ['🧔', '👩', '👨', '👩‍🦰', '🧓', '👴', '👵', '👨‍🦱', '👩‍🦱', '👨‍🦳', '👩‍🦳', '🧑‍🎓', '🧑‍💼'];
+    return customers[Math.floor(Math.random() * customers.length)];
   }
 
   private updateAvailableIngredients(ingredients: Ingredient[]): void {
@@ -282,9 +306,19 @@ export class UIManager {
              draggable="true"
              title="${ingredient.name}">
           ${ingredient.emoji} ${ingredient.name}
+          <button class="remove-ingredient" data-remove-id="${ingredient.id}" aria-label="Bỏ nguyên liệu">✖</button>
         </div>
       `;
     }).join('');
+
+    // Attach click handlers to remove buttons
+    container.querySelectorAll('.remove-ingredient').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const id = target.getAttribute('data-remove-id');
+        if (id) this.onRemoveIngredient?.(id);
+      });
+    });
   }
 
   private updateServeButton(state: GameState): void {
