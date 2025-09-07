@@ -80,6 +80,7 @@ export class UIManager {
         const headerAvatar = document.querySelector('.player-avatar');
         if (headerAvatar) headerAvatar.textContent = avatar;
         avatarModal?.classList.add('hidden');
+        this.showToast('Đã chọn avatar thành công!');
       });
     });
     const savedAvatar = localStorage.getItem('playerAvatar');
@@ -87,6 +88,40 @@ export class UIManager {
       const headerAvatar = document.querySelector('.player-avatar');
       if (headerAvatar) headerAvatar.textContent = savedAvatar;
     }
+  }
+
+  public showToast(message: string, type: 'success' | 'error' = 'success'): void {
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+    
+    Object.assign(toast.style, {
+      position: 'fixed',
+      top: '20px',
+      right: '20px',
+      padding: '15px 20px',
+      borderRadius: '10px',
+      color: 'white',
+      fontWeight: 'bold',
+      zIndex: '10000',
+      transform: 'translateX(100%)',
+      transition: 'transform 0.3s ease',
+      backgroundColor: type === 'success' ? '#4CAF50' : '#f44336',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+    });
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.transform = 'translateX(0)';
+    }, 100);
+
+    setTimeout(() => {
+      toast.style.transform = 'translateX(100%)';
+      setTimeout(() => {
+        document.body.removeChild(toast);
+      }, 300);
+    }, 3000);
   }
 
   private initializeDragAndDrop(): void {
@@ -401,9 +436,8 @@ export class UIManager {
           <div class="score-rank">#${index + 1}</div>
           <div class="score-details">
             <div class="score-player">${score.playerName}</div>
-            <div class="score-info">Cấp ${score.level} - ${score.score} điểm</div>
+            <div class="score-info">${score.score} điểm</div>
           </div>
-          <div class="score-date">${new Date(score.date).toLocaleDateString('vi-VN')}</div>
         </div>
       `).join('');
     } catch (error) {

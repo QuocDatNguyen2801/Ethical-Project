@@ -77,9 +77,7 @@ class CookingMamaGame {
     this.uiManager.updateGameOverScreen(state.score, state.level);
     
     // Check if this is a high score
-    const highScores = await import('./database').then(module => module.ScoreManager.getHighScores(1));
-    
-    const isHighScore = highScores.length === 0 || state.score > highScores[0].score;
+    const isHighScore = await import('./database').then(module => module.ScoreManager.isHighScore(state.score));
     
     if (isHighScore) {
       this.playSound('high-score');

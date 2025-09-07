@@ -149,9 +149,24 @@ body {
     color: #333;
 }
 
+.player-avatar-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
 .player-avatar {
-    font-size: 2rem;
-    margin-right: 10px;
+    font-size: 3rem;
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+    border: 4px solid white;
 }
 
 .game-content {
@@ -160,6 +175,7 @@ body {
     flex: 1;
     max-width: 1200px;
     width: 100%;
+    position: relative;
 }
 
 /* Customer Section */

@@ -226,8 +226,7 @@ export class GameEngine {
   public async saveHighScore(playerName: string): Promise<void> {
     await ScoreManager.addHighScore(
       playerName,
-      this.state.score,
-      this.state.level
+      this.state.score
     );
   }
 

@@ -12,11 +12,13 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "@types/sql.js": "^1.4.9",
     "typescript": "^5.0.0",
     "vite": "^5.0.0"
   },
   "dependencies": {
-    "dexie": "^3.2.4"
+    "dexie": "^3.2.4",
+    "sql.js": "^1.13.0"
   },
   "engines": {
     "node": "22.x"
