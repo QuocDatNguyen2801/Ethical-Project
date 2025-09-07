@@ -1,3 +1,65 @@
+.ingredient-groups-row {
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+}
+.ingredient-group-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+    max-width: 260px;
+    flex: 1 1 220px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 12px;
+    padding: 12px 8px 18px 8px;
+    box-shadow: 0 2px 8px rgba(78,205,196,0.06);
+}
+.ingredient-group-col .category-title {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+}
+.ingredient-group-col .group-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+.ingredient-group-col .ingredient-item {
+    width: 100%;
+    min-width: 90px;
+    max-width: 160px;
+    margin: 0 auto;
+}
+@media (max-width: 1100px) {
+    .ingredient-groups-row {
+        gap: 12px;
+    }
+    .ingredient-group-col {
+        min-width: 90px;
+        max-width: 120px;
+        padding: 8px 2px 12px 2px;
+    }
+}
+@media (max-width: 800px) {
+    .ingredient-groups-row {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .ingredient-group-col {
+        min-width: 45vw;
+        max-width: 48vw;
+        margin-bottom: 10px;
+    }
+}
 .modal.hidden { display: none; }
 .modal { position: fixed; inset: 0; z-index: 1000; }
 .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
@@ -190,21 +252,35 @@ body {
 }
 
 .ingredients-panel.wide {
-    flex: 2 1 700px;
-    max-width: 900px;
-    min-width: 400px;
+    flex: 2 1 1400px;
+    max-width: 1800px;
+    min-width: 1100px;
     background: rgba(255,255,255,0.97);
     border-radius: 20px;
     padding: 32px 24px;
     box-shadow: 0 4px 24px rgba(78,205,196,0.08);
+    max-height: none;
+    overflow-y: visible;
 }
 
 .ingredients-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 16px;
-    max-height: 600px;
-    overflow-y: auto;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px 18px;
+    max-height: none;
+    overflow-y: visible;
+    margin-bottom: 0;
+}
+
+@media (max-width: 1200px) {
+    .ingredients-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (max-width: 900px) {
+    .ingredients-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 1100px) {
@@ -212,31 +288,46 @@ body {
         flex-direction: column;
         gap: 16px;
     }
-    .ingredients-panel.wide {
-        min-width: unset;
-        max-width: unset;
+    .ingredients-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        max-height: none;
+        overflow-y: visible;
     }
-    .left-panel {
-        max-width: unset;
+    .ingredient-category {
+        margin-bottom: 0;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #eee;
     }
-}
-
-/* Modal nhập tên điểm cao */
-#highscore-modal .modal-content {
-    max-width: 350px;
-    text-align: center;
-}
-#highscore-modal input[type="text"] {
-    font-size: 1.1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-/* Customer Section */
-.customer-section {
+    .ingredient-category:last-child {
+        border-bottom: none;
+    }
+    .category-title {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 8px;
+        font-weight: bold;
+        display: inline-block;
+    }
+    .category-items {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+    }
+    @media (max-width: 1200px) {
+        .category-items {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    @media (max-width: 900px) {
+        .category-items {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
     flex: 1;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
