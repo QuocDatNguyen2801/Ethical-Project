@@ -5,9 +5,9 @@
   "main": "index.html",
   "scripts": {
     "dev": "vite",
-    "build": "node build.js",
-    "build:vite": "vite build",
+    "build": "vite build",
     "preview": "vite preview",
+    "type-check": "tsc --noEmit",
     "test-build": "node build-test.js"
   },
   "devDependencies": {
