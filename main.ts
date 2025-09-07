@@ -90,6 +90,14 @@ class CookingMamaGame {
       }, 1000);
     } else {
       this.playSound('game-over');
+      // Show different messages based on score
+      if (state.score > 1000) {
+        this.showErrorMessage('Tuyệt vời! Bạn đã nấu rất giỏi!');
+      } else if (state.score > 500) {
+        this.showErrorMessage('Không tệ! Hãy thử lại để cải thiện!');
+      } else {
+        this.showErrorMessage('Hết thời gian! Hãy thử lại nhé!');
+      }
     }
   }
 

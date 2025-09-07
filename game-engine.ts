@@ -14,10 +14,10 @@ export class GameEngine {
     onScreenChange: (screen: GameScreen) => void
   ) {
     this.config = {
-      initialTime: 60,
-      timePerLevel: 10,
-      scoreMultiplier: 1.2,
-      maxLevel: 10
+      initialTime: 120, // Tăng thời gian tổng lên 2 phút
+      timePerLevel: 8,  // Giảm thời gian thêm mỗi level
+      scoreMultiplier: 1.3, // Tăng hệ số điểm
+      maxLevel: 15 // Tăng số level tối đa
     };
 
     this.state = this.createInitialState();
@@ -93,7 +93,9 @@ export class GameEngine {
         }
       }
 
+      // Check for game over conditions
       if (this.state.timeLeft <= 0) {
+        console.log('💀 Game Over - Hết thời gian tổng!');
         this.endGame();
         return;
       }
@@ -190,9 +192,16 @@ export class GameEngine {
   }
 
   private handleOrderTimeout(): void {
+    // Check if this is the final timeout (game over condition)
+    if (this.state.timeLeft <= 0) {
+      console.log('💀 Game Over - Hết thời gian!');
+      this.endGame();
+      return;
+    }
+    
     // Penalty for timeout
     this.state.score = Math.max(0, this.state.score - 50);
-    console.log('⏰ Hết thời gian! Trừ 50 điểm');
+    console.log('⏰ Hết thời gian đơn hàng! Trừ 50 điểm');
     this.generateNewOrder();
   }
 

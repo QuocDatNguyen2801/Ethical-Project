@@ -157,10 +157,12 @@ export class UIManager {
       scoreElement.textContent = state.score.toString();
     }
 
-    // Update time
+    // Update time with better formatting
     const timeElement = document.getElementById('time-left');
     if (timeElement) {
-      timeElement.textContent = state.timeLeft.toString();
+      const minutes = Math.floor(state.timeLeft / 60);
+      const seconds = state.timeLeft % 60;
+      timeElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     }
 
     // Update level
@@ -276,6 +278,28 @@ export class UIManager {
 
     if (scoreElement) scoreElement.textContent = finalScore.toString();
     if (levelElement) levelElement.textContent = finalLevel.toString();
+    
+    // Add performance rating
+    const gameOverContent = document.querySelector('.game-over-content');
+    if (gameOverContent) {
+      let rating = '';
+      if (finalScore > 2000) rating = '🏆 Đầu bếp xuất sắc!';
+      else if (finalScore > 1500) rating = '🥇 Đầu bếp tài năng!';
+      else if (finalScore > 1000) rating = '🥈 Đầu bếp khá!';
+      else if (finalScore > 500) rating = '🥉 Đầu bếp mới!';
+      else rating = '👨‍🍳 Hãy cố gắng thêm!';
+      
+      const existingRating = gameOverContent.querySelector('.performance-rating');
+      if (existingRating) {
+        existingRating.textContent = rating;
+      } else {
+        const ratingElement = document.createElement('p');
+        ratingElement.className = 'performance-rating';
+        ratingElement.textContent = rating;
+        ratingElement.style.cssText = 'font-size: 1.2rem; color: #ff6b6b; margin: 1rem 0; font-weight: bold;';
+        gameOverContent.insertBefore(ratingElement, gameOverContent.querySelector('.game-over-actions'));
+      }
+    }
   }
 
   private async loadHighScores(): Promise<void> {

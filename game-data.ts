@@ -46,7 +46,7 @@ export const RECIPES: Recipe[] = [
     ingredients: ['lettuce', 'tomato', 'cucumber'],
     difficulty: 'easy',
     baseScore: 100,
-    timeLimit: 30
+    timeLimit: 20
   },
   {
     id: 'scrambled-eggs',
@@ -54,7 +54,7 @@ export const RECIPES: Recipe[] = [
     ingredients: ['egg', 'butter', 'salt'],
     difficulty: 'easy',
     baseScore: 120,
-    timeLimit: 25
+    timeLimit: 18
   },
   {
     id: 'grilled-cheese',
@@ -62,7 +62,7 @@ export const RECIPES: Recipe[] = [
     ingredients: ['bread', 'cheese', 'butter'],
     difficulty: 'easy',
     baseScore: 110,
-    timeLimit: 35
+    timeLimit: 22
   },
 
   // Medium Recipes
@@ -72,7 +72,7 @@ export const RECIPES: Recipe[] = [
     ingredients: ['chicken', 'onion', 'bell-pepper', 'garlic', 'salt'],
     difficulty: 'medium',
     baseScore: 200,
-    timeLimit: 45
+    timeLimit: 30
   },
   {
     id: 'pasta-marinara',
@@ -80,7 +80,7 @@ export const RECIPES: Recipe[] = [
     ingredients: ['pasta', 'tomato', 'onion', 'garlic', 'salt'],
     difficulty: 'medium',
     baseScore: 180,
-    timeLimit: 40
+    timeLimit: 28
   },
   {
     id: 'beef-noodles',
@@ -88,7 +88,7 @@ export const RECIPES: Recipe[] = [
     ingredients: ['noodles', 'beef', 'onion', 'garlic', 'salt'],
     difficulty: 'medium',
     baseScore: 220,
-    timeLimit: 50
+    timeLimit: 32
   },
 
   // Hard Recipes
@@ -98,7 +98,7 @@ export const RECIPES: Recipe[] = [
     ingredients: ['chicken', 'shrimp', 'onion', 'bell-pepper', 'mushroom', 'garlic', 'ginger', 'salt'],
     difficulty: 'hard',
     baseScore: 350,
-    timeLimit: 60
+    timeLimit: 40
   },
   {
     id: 'gourmet-salad',
@@ -106,7 +106,7 @@ export const RECIPES: Recipe[] = [
     ingredients: ['lettuce', 'tomato', 'cucumber', 'cheese', 'onion', 'salt', 'pepper'],
     difficulty: 'hard',
     baseScore: 300,
-    timeLimit: 55
+    timeLimit: 35
   },
   {
     id: 'seafood-pasta',
@@ -114,7 +114,7 @@ export const RECIPES: Recipe[] = [
     ingredients: ['pasta', 'shrimp', 'fish', 'tomato', 'onion', 'garlic', 'salt', 'pepper'],
     difficulty: 'hard',
     baseScore: 400,
-    timeLimit: 65
+    timeLimit: 42
   }
 ];
 
