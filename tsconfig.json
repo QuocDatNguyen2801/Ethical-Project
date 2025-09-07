@@ -16,6 +16,6 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["main.ts", "game-engine.ts", "ui-manager.ts", "game-types.ts", "game-data.ts", "database.ts"],
-  "exclude": ["vite.config.ts", "dist", "node_modules"],
+  "exclude": ["vite.config.ts", "dist", "node_modules", "build.js", "build-test.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
