@@ -298,43 +298,22 @@ export class UIManager {
     const container = document.getElementById('available-ingredients');
     if (!container) return;
 
-if (ingredients.length === 0) {
-  container.innerHTML = '<p class="empty-message">🔄 Đang tải nguyên liệu...</p>';
-  return;
-}
+    if (ingredients.length === 0) {
+      container.innerHTML = '<p class="empty-message">🔄 Đang tải nguyên liệu...</p>';
+      return;
+    }
 
-const categories = {
-  'vegetable': ingredients.filter(i => i.category === 'vegetable'),
-  'meat': ingredients.filter(i => i.category === 'meat'),
-  'spice': ingredients.filter(i => i.category === 'spice'),
-  'dairy': ingredients.filter(i => i.category === 'dairy'),
-  'grain': ingredients.filter(i => i.category === 'grain')
-};
+    const categories = {
+      'vegetable': ingredients.filter(i => i.category === 'vegetable'),
+      'meat': ingredients.filter(i => i.category === 'meat'),
+      'spice': ingredients.filter(i => i.category === 'spice'),
+      'dairy': ingredients.filter(i => i.category === 'dairy'),
+      'grain': ingredients.filter(i => i.category === 'grain')
+    };
     const categoryNames = {
       'vegetable': '🥬 Rau củ',
       'meat': '🥩 Thịt cá',
-      'spice': '🧂 Gia vị',      .ingredient-groups-row {
-          display: flex;
-          flex-direction: row;
-          gap: 28px;
-          width: 100%;
-          justify-content: center;
-          align-items: flex-start;
-      }      .ingredient-groups-row {
-          display: flex;
-          flex-direction: row;
-          gap: 28px;
-          width: 100%;
-          justify-content: center;
-          align-items: flex-start;
-      }      .ingredient-groups-row {
-          display: flex;
-          flex-direction: row;
-          gap: 28px;
-          width: 100%;
-          justify-content: center;
-          align-items: flex-start;
-      }
+      'spice': '🧂 Gia vị',
       'dairy': '🥛 Sữa & Trứng',
       'grain': '🍚 Ngũ cốc'
     };
