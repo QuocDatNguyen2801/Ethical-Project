@@ -62,9 +62,9 @@ class CookingMamaGame {
 
   private onGameStateChange(state: GameState): void {
     this.uiManager.updateGameState(state);
-    
     // Check for game over conditions
-    if (!state.isGameActive && state.timeLeft <= 0) {
+    if (!state.isGameActive) {
+      // Luôn truyền state hiện tại khi game kết thúc
       this.handleGameOver(state);
     }
   }

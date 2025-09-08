@@ -449,6 +449,7 @@ export class UIManager {
       const modal = document.getElementById('highscore-modal');
       const input = document.getElementById('player-name-input') as HTMLInputElement;
       const saveBtn = document.getElementById('save-highscore-btn');
+      const gameOverScreen = document.getElementById('game-over-screen');
       if (!modal || !input || !saveBtn) {
         // fallback
         const playerName = prompt('Nhập tên của bạn để lưu điểm cao:') || 'Người chơi';
@@ -456,10 +457,14 @@ export class UIManager {
         return;
       }
       input.value = '';
+      // Ẩn màn hình game over để modal không bị che
+      if (gameOverScreen) gameOverScreen.classList.add('hidden');
       modal.classList.remove('hidden');
       input.focus();
       const closeModal = () => {
         modal.classList.add('hidden');
+        // Hiện lại màn hình game over sau khi nhập tên
+        if (gameOverScreen) gameOverScreen.classList.remove('hidden');
         saveBtn.removeEventListener('click', onSave);
         input.removeEventListener('keydown', onKeyDown);
       };

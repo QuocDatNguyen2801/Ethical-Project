@@ -75,7 +75,9 @@ export class GameEngine {
   public endGame(): void {
     this.state.isGameActive = false;
     this.stopGameLoop();
-    this.onStateChange(this.state);
+    // Gọi onStateChange với state hiện tại để cập nhật điểm và cấp độ cuối cùng
+    this.onStateChange({ ...this.state });
+    // Truyền state hiện tại sang màn hình game-over
     this.onScreenChange('game-over');
   }
 
