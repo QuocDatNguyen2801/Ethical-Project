@@ -17,6 +17,34 @@
                 <button id="high-scores-btn" class="btn secondary">Điểm Cao</button>
                 <button id="instructions-btn" class="btn secondary">Hướng Dẫn</button>
                 <button id="open-avatar-modal" class="btn secondary">Chọn Avatar</button>
+                <button id="open-settings-modal" class="btn secondary">Cài đặt</button>
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h3 id="settings-title">Settings</h3>
+            <div style="margin-bottom: 18px;">
+                <label for="language-select" id="label-language"><b>Language:</b></label>
+                <select id="language-select" style="margin-left: 10px; padding: 6px 12px; border-radius: 6px;">
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 18px;">
+                <label for="sound-toggle" id="label-sound"><b>Sound:</b></label>
+                <input type="checkbox" id="sound-toggle" checked style="margin-left: 10px;">
+                <span id="sound-status">On</span>
+            </div>
+            <div style="margin-bottom: 18px;">
+                <label for="sound-volume" id="label-volume"><b>Volume:</b></label>
+                <input type="range" id="sound-volume" min="0" max="100" value="100" style="margin-left: 10px;">
+                <span id="volume-value">100</span>
+            </div>
+            <div class="modal-actions">
+                <button id="close-settings-modal" class="btn secondary">Close</button>
+            </div>
+        </div>
+    </div>
             </div>
         </div>
 
@@ -49,6 +77,7 @@
                     <div class="cooking-area">
                         <h3>Khu vực nấu ăn:</h3>
                         <div id="cooking-pan" class="cooking-pan">
+                            <!-- Placeholder will be injected dynamically by JS -->
                             <div id="cooking-ingredients" class="cooking-ingredients"></div>
                         </div>
                         <button id="serve-dish-btn" class="btn primary" disabled>Phục vụ món ăn</button>

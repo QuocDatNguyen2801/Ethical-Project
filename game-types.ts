@@ -1,13 +1,19 @@
 export interface Ingredient {
   id: string;
-  name: string;
+  name: {
+    vi: string;
+    en: string;
+  };
   emoji: string;
   category: 'vegetable' | 'meat' | 'spice' | 'dairy' | 'grain';
 }
 
 export interface Recipe {
   id: string;
-  name: string;
+  name: {
+    vi: string;
+    en: string;
+  };
   ingredients: string[];
   difficulty: 'easy' | 'medium' | 'hard';
   baseScore: number;

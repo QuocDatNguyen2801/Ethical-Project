@@ -80,7 +80,8 @@ export class UIManager {
         const headerAvatar = document.querySelector('.player-avatar');
         if (headerAvatar) headerAvatar.textContent = avatar;
         avatarModal?.classList.add('hidden');
-        this.showToast('Đã chọn avatar thành công!');
+  const lang = (document.getElementById('language-select') as HTMLSelectElement)?.value || 'vi';
+  this.showToast(lang === 'vi' ? 'Đã chọn avatar thành công!' : 'Avatar selected!');
       });
     });
     const savedAvatar = localStorage.getItem('playerAvatar');
@@ -232,11 +233,13 @@ export class UIManager {
       timeElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     }
 
-    // Update level
-    const levelElement = document.getElementById('current-level');
-    if (levelElement) {
-      levelElement.textContent = state.level.toString();
-    }
+      // Get language
+      const lang = (document.getElementById('language-select') as HTMLSelectElement)?.value || 'vi';
+      // Update level
+      const levelElement = document.getElementById('current-level');
+      if (levelElement) {
+        levelElement.textContent = state.level.toString();
+      }
 
     // Update current order
     this.updateCurrentOrder(state);
@@ -246,6 +249,8 @@ export class UIManager {
 
     // Update cooking ingredients
     this.updateCookingIngredients(state.cookingIngredients);
+
+  // Drag text is handled inside updateCookingIngredients; do not override here.
 
     // Update serve button
     this.updateServeButton(state);
@@ -260,9 +265,10 @@ export class UIManager {
     }
 
     const order = state.currentOrder;
+    const lang = ((document.getElementById('language-select') as HTMLSelectElement)?.value || 'vi') as 'vi' | 'en';
     const ingredients = order.recipe.ingredients.map(id => {
       const ingredient = getIngredientById(id);
-      return ingredient ? `${ingredient.emoji} ${ingredient.name}` : id;
+      return ingredient ? `${ingredient.emoji} ${ingredient.name[lang]}` : id;
     }).join(', ');
 
     // Determine progress bar color based on time remaining
@@ -273,9 +279,9 @@ export class UIManager {
 
     orderElement.innerHTML = `
       <div class="order-recipe">
-        <h4>🍽️ ${order.recipe.name}</h4>
-        <p><strong>📋 Nguyên liệu cần:</strong> ${ingredients}</p>
-        <p><strong>⏰ Thời gian còn lại:</strong> ${order.timeLeft}s</p>
+        <h4>🍽️ ${order.recipe.name[lang]}</h4>
+        <p><strong>📋 ${lang === 'vi' ? 'Nguyên liệu cần:' : 'Needed:'}</strong> ${ingredients}</p>
+        <p><strong>⏰ ${lang === 'vi' ? 'Thời gian còn lại:' : 'Time left:'}</strong> ${order.timeLeft}s</p>
         <div class="progress-bar">
           <div class="progress-fill ${progressClass}" style="width: ${timePercentage}%"></div>
         </div>
@@ -298,8 +304,10 @@ export class UIManager {
     const container = document.getElementById('available-ingredients');
     if (!container) return;
 
+  const lang = ((document.getElementById('language-select') as HTMLSelectElement)?.value || 'vi') as 'vi' | 'en';
+
     if (ingredients.length === 0) {
-      container.innerHTML = '<p class="empty-message">🔄 Đang tải nguyên liệu...</p>';
+      container.innerHTML = `<p class="empty-message">${lang === 'vi' ? '🔄 Đang tải nguyên liệu...' : '🔄 Loading ingredients...'}</p>`;
       return;
     }
 
@@ -311,11 +319,11 @@ export class UIManager {
       'grain': ingredients.filter(i => i.category === 'grain')
     };
     const categoryNames = {
-      'vegetable': '🥬 Rau củ',
-      'meat': '🥩 Thịt cá',
-      'spice': '🧂 Gia vị',
-      'dairy': '🥛 Sữa & Trứng',
-      'grain': '🍚 Ngũ cốc'
+      'vegetable': lang === 'vi' ? '🥬 Rau củ' : '🥬 Vegetables',
+      'meat': lang === 'vi' ? '🥩 Thịt cá' : '🥩 Meat & Fish',
+      'spice': lang === 'vi' ? '🧂 Gia vị' : '🧂 Spices',
+      'dairy': lang === 'vi' ? '🥛 Sữa & Trứng' : '🥛 Dairy & Eggs',
+      'grain': lang === 'vi' ? '🍚 Ngũ cốc' : '🍚 Grains'
     };
 
     container.innerHTML = `
@@ -328,9 +336,10 @@ export class UIManager {
                 <div class="ingredient-item" 
                      data-ingredient-id="${ingredient.id}" 
                      draggable="true"
-                     title="${ingredient.name}">
+                     title="${ingredient.name[lang as 'vi' | 'en']}" 
+                     id="ingredient-${ingredient.id}">
                   <div class="ingredient-emoji">${ingredient.emoji}</div>
-                  <div class="ingredient-name">${ingredient.name}</div>
+                  <div class="ingredient-name">${ingredient.name[lang as 'vi' | 'en']}</div>
                 </div>
               `).join('')}
             </div>
@@ -341,29 +350,41 @@ export class UIManager {
   }
 
   private updateCookingIngredients(ingredientIds: string[]): void {
+    console.log('[updateCookingIngredients] ingredientIds:', ingredientIds);
     const container = document.getElementById('cooking-ingredients');
     if (!container) return;
+    console.log('[updateCookingIngredients] container found:', container);
+    const lang = ((document.getElementById('language-select') as HTMLSelectElement)?.value || 'vi') as 'vi' | 'en';
 
+
+    // Only show placeholder if empty
     if (ingredientIds.length === 0) {
-      container.innerHTML = '<p class="empty-message">Kéo nguyên liệu vào đây</p>';
-      return;
+      container.innerHTML = '<div class="pan-placeholder">' + (lang === 'vi' ? 'Kéo nguyên liệu vào đây' : 'Drag ingredients here') + '</div>';
+    } else {
+      // Only render ingredients, no placeholder
+      container.innerHTML = ingredientIds.map(id => {
+        const ingredient = getIngredientById(id);
+        if (!ingredient) {
+          return `
+            <div class="cooking-ingredient missing-ingredient" 
+                 data-ingredient-id="${id}" 
+                 draggable="false"
+                 title="${lang === 'vi' ? 'Không tìm thấy nguyên liệu' : 'Ingredient not found'}">
+              ❓ ${lang === 'vi' ? 'Không rõ' : 'Unknown'} (${id})
+            </div>
+          `;
+        }
+        return `
+          <div class="cooking-ingredient" 
+               data-ingredient-id="${ingredient.id}" 
+               draggable="true"
+               title="${ingredient.name[lang as 'vi' | 'en']}">
+            ${ingredient.emoji} ${ingredient.name[lang as 'vi' | 'en']}
+            <button class="remove-ingredient" data-remove-id="${ingredient.id}" aria-label="${lang === 'vi' ? 'Bỏ nguyên liệu' : 'Remove ingredient'}">✖</button>
+          </div>
+        `;
+      }).join('');
     }
-
-    container.innerHTML = ingredientIds.map(id => {
-      const ingredient = getIngredientById(id);
-      if (!ingredient) return '';
-
-      return `
-        <div class="cooking-ingredient" 
-             data-ingredient-id="${ingredient.id}" 
-             draggable="true"
-             title="${ingredient.name}">
-          ${ingredient.emoji} ${ingredient.name}
-          <button class="remove-ingredient" data-remove-id="${ingredient.id}" aria-label="Bỏ nguyên liệu">✖</button>
-        </div>
-      `;
-    }).join('');
-
     // Attach click handlers to remove buttons
     container.querySelectorAll('.remove-ingredient').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -378,13 +399,16 @@ export class UIManager {
     const button = document.getElementById('serve-dish-btn') as HTMLButtonElement;
     if (!button) return;
 
+    const lang = (document.getElementById('language-select') as HTMLSelectElement)?.value || 'vi';
     const canServe = state.currentOrder && 
                     state.currentOrder.recipe.ingredients.every(required => 
                       state.cookingIngredients.includes(required)
                     );
 
     button.disabled = !canServe;
-    button.textContent = canServe ? 'Phục vụ món ăn' : 'Thiếu nguyên liệu';
+    button.textContent = canServe
+      ? (lang === 'vi' ? 'Phục vụ món ăn' : 'Serve Dish')
+      : (lang === 'vi' ? 'Thiếu nguyên liệu' : 'Missing Ingredients');
   }
 
   public updateGameOverScreen(finalScore: number, finalLevel: number): void {
@@ -422,13 +446,12 @@ export class UIManager {
     if (!container) return;
 
     try {
+      await ScoreManager.initialize();
       const scores = await ScoreManager.getHighScores(10);
-      
       if (scores.length === 0) {
         container.innerHTML = '<p>Chưa có điểm cao nào!</p>';
         return;
       }
-
       container.innerHTML = scores.map((score, index) => `
         <div class="score-item ${index === 0 ? 'first-place' : ''}">
           <div class="score-rank">#${index + 1}</div>
@@ -444,45 +467,11 @@ export class UIManager {
     }
   }
 
-  public showPlayerNameDialog(): Promise<string> {
-    return new Promise((resolve) => {
-      const modal = document.getElementById('highscore-modal');
-      const input = document.getElementById('player-name-input') as HTMLInputElement;
-      const saveBtn = document.getElementById('save-highscore-btn');
-      const gameOverScreen = document.getElementById('game-over-screen');
-      if (!modal || !input || !saveBtn) {
-        // fallback
-        const playerName = prompt('Nhập tên của bạn để lưu điểm cao:') || 'Người chơi';
-        resolve(playerName);
-        return;
-      }
-      input.value = '';
-      // Ẩn màn hình game over để modal không bị che
-      if (gameOverScreen) gameOverScreen.classList.add('hidden');
-      modal.classList.remove('hidden');
-      input.focus();
-      const closeModal = () => {
-        modal.classList.add('hidden');
-        // Hiện lại màn hình game over sau khi nhập tên
-        if (gameOverScreen) gameOverScreen.classList.remove('hidden');
-        saveBtn.removeEventListener('click', onSave);
-        input.removeEventListener('keydown', onKeyDown);
-      };
-      const onSave = () => {
-        let name = input.value.trim();
-        if (!name) name = 'Người chơi';
-        closeModal();
-        resolve(name);
-      };
-      const onKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Enter') {
-          onSave();
-        }
-      };
-      saveBtn.addEventListener('click', onSave);
-      input.addEventListener('keydown', onKeyDown);
-    });
-  }
+  // Removed old modal-based implementation. Now using browser prompt below.
+    public async showPlayerNameDialog(): Promise<string | null> {
+      // Always use browser prompt for entering player name
+      return window.prompt('Nhập tên của bạn để lưu điểm cao:', '') || null;
+    }
 
   // Event callbacks
   public onAddIngredient?: (ingredientId: string) => void;

@@ -2,47 +2,47 @@ import { Ingredient, Recipe } from './game-types';
 
 export const INGREDIENTS: Ingredient[] = [
   // Vegetables
-  { id: 'tomato', name: 'Cà chua', emoji: '🍅', category: 'vegetable' },
-  { id: 'onion', name: 'Hành tây', emoji: '🧅', category: 'vegetable' },
-  { id: 'carrot', name: 'Cà rốt', emoji: '🥕', category: 'vegetable' },
-  { id: 'potato', name: 'Khoai tây', emoji: '🥔', category: 'vegetable' },
-  { id: 'lettuce', name: 'Rau xà lách', emoji: '🥬', category: 'vegetable' },
-  { id: 'cucumber', name: 'Dưa chuột', emoji: '🥒', category: 'vegetable' },
-  { id: 'bell-pepper', name: 'Ớt chuông', emoji: '🟢', category: 'vegetable' },
-  { id: 'mushroom', name: 'Nấm', emoji: '🍄', category: 'vegetable' },
+  { id: 'tomato', name: { vi: 'Cà chua', en: 'Tomato' }, emoji: '🍅', category: 'vegetable' },
+  { id: 'onion', name: { vi: 'Hành tây', en: 'Onion' }, emoji: '🧅', category: 'vegetable' },
+  { id: 'carrot', name: { vi: 'Cà rốt', en: 'Carrot' }, emoji: '🥕', category: 'vegetable' },
+  { id: 'potato', name: { vi: 'Khoai tây', en: 'Potato' }, emoji: '🥔', category: 'vegetable' },
+  { id: 'lettuce', name: { vi: 'Rau xà lách', en: 'Lettuce' }, emoji: '🥬', category: 'vegetable' },
+  { id: 'cucumber', name: { vi: 'Dưa chuột', en: 'Cucumber' }, emoji: '🥒', category: 'vegetable' },
+  { id: 'bell-pepper', name: { vi: 'Ớt chuông', en: 'Bell Pepper' }, emoji: '🟢', category: 'vegetable' },
+  { id: 'mushroom', name: { vi: 'Nấm', en: 'Mushroom' }, emoji: '🍄', category: 'vegetable' },
 
   // Meat
-  { id: 'chicken', name: 'Thịt gà', emoji: '🍗', category: 'meat' },
-  { id: 'beef', name: 'Thịt bò', emoji: '🥩', category: 'meat' },
-  { id: 'pork', name: 'Thịt heo', emoji: '🥓', category: 'meat' },
-  { id: 'fish', name: 'Cá', emoji: '🐟', category: 'meat' },
-  { id: 'shrimp', name: 'Tôm', emoji: '🦐', category: 'meat' },
+  { id: 'chicken', name: { vi: 'Thịt gà', en: 'Chicken' }, emoji: '🍗', category: 'meat' },
+  { id: 'beef', name: { vi: 'Thịt bò', en: 'Beef' }, emoji: '🥩', category: 'meat' },
+  { id: 'pork', name: { vi: 'Thịt heo', en: 'Pork' }, emoji: '🥓', category: 'meat' },
+  { id: 'fish', name: { vi: 'Cá', en: 'Fish' }, emoji: '🐟', category: 'meat' },
+  { id: 'shrimp', name: { vi: 'Tôm', en: 'Shrimp' }, emoji: '🦐', category: 'meat' },
 
   // Spices
-  { id: 'salt', name: 'Muối', emoji: '🧂', category: 'spice' },
-  { id: 'pepper', name: 'Tiêu', emoji: '⚫', category: 'spice' },
-  { id: 'garlic', name: 'Tỏi', emoji: '🧄', category: 'spice' },
-  { id: 'ginger', name: 'Gừng', emoji: '🟤', category: 'spice' },
-  { id: 'chili', name: 'Ớt', emoji: '🌶️', category: 'spice' },
+  { id: 'salt', name: { vi: 'Muối', en: 'Salt' }, emoji: '🧂', category: 'spice' },
+  { id: 'pepper', name: { vi: 'Tiêu', en: 'Pepper' }, emoji: '⚫', category: 'spice' },
+  { id: 'garlic', name: { vi: 'Tỏi', en: 'Garlic' }, emoji: '🧄', category: 'spice' },
+  { id: 'ginger', name: { vi: 'Gừng', en: 'Ginger' }, emoji: '🟤', category: 'spice' },
+  { id: 'chili', name: { vi: 'Ớt', en: 'Chili' }, emoji: '🌶️', category: 'spice' },
 
   // Dairy
-  { id: 'cheese', name: 'Phô mai', emoji: '🧀', category: 'dairy' },
-  { id: 'milk', name: 'Sữa', emoji: '🥛', category: 'dairy' },
-  { id: 'butter', name: 'Bơ', emoji: '🧈', category: 'dairy' },
-  { id: 'egg', name: 'Trứng', emoji: '🥚', category: 'dairy' },
+  { id: 'cheese', name: { vi: 'Phô mai', en: 'Cheese' }, emoji: '🧀', category: 'dairy' },
+  { id: 'milk', name: { vi: 'Sữa', en: 'Milk' }, emoji: '🥛', category: 'dairy' },
+  { id: 'butter', name: { vi: 'Bơ', en: 'Butter' }, emoji: '🧈', category: 'dairy' },
+  { id: 'egg', name: { vi: 'Trứng', en: 'Egg' }, emoji: '🥚', category: 'dairy' },
 
   // Grains
-  { id: 'rice', name: 'Cơm', emoji: '🍚', category: 'grain' },
-  { id: 'bread', name: 'Bánh mì', emoji: '🍞', category: 'grain' },
-  { id: 'pasta', name: 'Mì ống', emoji: '🍝', category: 'grain' },
-  { id: 'noodles', name: 'Mì', emoji: '🍜', category: 'grain' }
+  { id: 'rice', name: { vi: 'Cơm', en: 'Rice' }, emoji: '🍚', category: 'grain' },
+  { id: 'bread', name: { vi: 'Bánh mì', en: 'Bread' }, emoji: '🍞', category: 'grain' },
+  { id: 'pasta', name: { vi: 'Mì ống', en: 'Pasta' }, emoji: '🍝', category: 'grain' },
+  { id: 'noodles', name: { vi: 'Mì', en: 'Noodles' }, emoji: '🍜', category: 'grain' }
 ];
 
 export const RECIPES: Recipe[] = [
   // Easy Recipes
   {
     id: 'simple-salad',
-    name: 'Salad Đơn Giản',
+    name: { vi: 'Salad Đơn Giản', en: 'Simple Salad' },
     ingredients: ['lettuce', 'tomato', 'cucumber'],
     difficulty: 'easy',
     baseScore: 100,
@@ -50,7 +50,7 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'tomato-omelette',
-    name: 'Trứng ốp la cà chua',
+    name: { vi: 'Trứng ốp la cà chua', en: 'Tomato Omelette' },
     ingredients: ['egg', 'tomato', 'salt'],
     difficulty: 'easy',
     baseScore: 120,
@@ -58,7 +58,7 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'scrambled-eggs',
-    name: 'Trứng Chiên',
+    name: { vi: 'Trứng Chiên', en: 'Scrambled Eggs' },
     ingredients: ['egg', 'butter', 'salt'],
     difficulty: 'easy',
     baseScore: 120,
@@ -66,7 +66,7 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'grilled-cheese',
-    name: 'Bánh Mì Phô Mai Nướng',
+    name: { vi: 'Bánh Mì Phô Mai Nướng', en: 'Grilled Cheese' },
     ingredients: ['bread', 'cheese', 'butter'],
     difficulty: 'easy',
     baseScore: 110,
@@ -74,7 +74,7 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'butter-potato',
-    name: 'Khoai tây bơ',
+    name: { vi: 'Khoai tây bơ', en: 'Butter Potato' },
     ingredients: ['potato', 'butter', 'salt'],
     difficulty: 'easy',
     baseScore: 130,
@@ -84,7 +84,7 @@ export const RECIPES: Recipe[] = [
   // Medium Recipes
   {
     id: 'chicken-stir-fry',
-    name: 'Gà Xào',
+    name: { vi: 'Gà Xào', en: 'Chicken Stir Fry' },
     ingredients: ['chicken', 'onion', 'bell-pepper', 'garlic', 'salt'],
     difficulty: 'medium',
     baseScore: 200,
@@ -92,7 +92,7 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'pasta-marinara',
-    name: 'Mì Sốt Cà Chua',
+    name: { vi: 'Mì Sốt Cà Chua', en: 'Pasta Marinara' },
     ingredients: ['pasta', 'tomato', 'onion', 'garlic', 'salt'],
     difficulty: 'medium',
     baseScore: 180,
@@ -100,7 +100,7 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'beef-noodles',
-    name: 'Mì Bò',
+    name: { vi: 'Mì Bò', en: 'Beef Noodles' },
     ingredients: ['noodles', 'beef', 'onion', 'garlic', 'salt'],
     difficulty: 'medium',
     baseScore: 220,
@@ -108,7 +108,7 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'fish-grill',
-    name: 'Cá nướng tiêu',
+    name: { vi: 'Cá nướng tiêu', en: 'Grilled Fish with Pepper' },
     ingredients: ['fish', 'pepper', 'salt'],
     difficulty: 'medium',
     baseScore: 210,
@@ -116,7 +116,7 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'chicken-salad',
-    name: 'Salad gà',
+    name: { vi: 'Salad gà', en: 'Chicken Salad' },
     ingredients: ['lettuce', 'chicken', 'cucumber', 'tomato', 'salt'],
     difficulty: 'medium',
     baseScore: 230,
@@ -126,7 +126,7 @@ export const RECIPES: Recipe[] = [
   // Hard Recipes
   {
     id: 'complex-stir-fry',
-    name: 'Xào Tổng Hợp',
+    name: { vi: 'Xào Tổng Hợp', en: 'Mixed Stir Fry' },
     ingredients: ['chicken', 'shrimp', 'onion', 'bell-pepper', 'mushroom', 'garlic', 'ginger', 'salt'],
     difficulty: 'hard',
     baseScore: 350,
@@ -134,7 +134,7 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'gourmet-salad',
-    name: 'Salad Thượng Hạng',
+    name: { vi: 'Salad Thượng Hạng', en: 'Gourmet Salad' },
     ingredients: ['lettuce', 'tomato', 'cucumber', 'cheese', 'onion', 'salt', 'pepper'],
     difficulty: 'hard',
     baseScore: 300,
@@ -142,16 +142,15 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'seafood-pasta',
-    name: 'Mì Hải Sản',
+    name: { vi: 'Mì Hải Sản', en: 'Seafood Pasta' },
     ingredients: ['pasta', 'shrimp', 'fish', 'tomato', 'onion', 'garlic', 'salt', 'pepper'],
     difficulty: 'hard',
     baseScore: 400,
     timeLimit: 42
-  }
-  ,
+  },
   {
     id: 'beef-stir-ginger',
-    name: 'Bò xào gừng',
+    name: { vi: 'Bò xào gừng', en: 'Beef Stir-fried with Ginger' },
     ingredients: ['beef', 'ginger', 'onion', 'garlic', 'salt'],
     difficulty: 'hard',
     baseScore: 360,
@@ -159,7 +158,7 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'shrimp-garlic-noodles',
-    name: 'Mì tôm xào tỏi',
+    name: { vi: 'Mì tôm xào tỏi', en: 'Shrimp Garlic Noodles' },
     ingredients: ['noodles', 'shrimp', 'garlic', 'onion', 'salt'],
     difficulty: 'hard',
     baseScore: 370,
